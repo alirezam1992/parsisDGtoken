@@ -38,16 +38,12 @@ class TokenResponse(BaseModel):
 
 class StatusResponse(BaseModel):
     access_token: str
-    expiry: int
-    expiry_readable: str
-    now: int
-    now_readable: str
+    issued_at: str
+    expiry: str
+    now: str
     is_expired: bool
     expires_in_seconds: int
-    issued_at: int
-    issued_at_readable: str
-    next_refresh_timestamp: int
-    next_refresh_readable: str
+    next_refresh: str
 
 # --- Startup logic ---
 @app.on_event("startup")
