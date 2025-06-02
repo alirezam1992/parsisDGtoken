@@ -12,7 +12,7 @@ from token_manager import refresh_access_token, get_latest_token, scheduler as t
 
 # Load environment variables
 load_dotenv()
-EXPECTED_API_KEY = os.getenv("API_KEY", "").strip()
+API_KEYS = set(k.strip() for k in os.getenv("API_KEYS", "").split(","))
 
 app = FastAPI()
 
@@ -35,7 +35,7 @@ class StatusResponse(BaseModel):
 
 # --- API Key Validation ---
 def verify_api_key(api_key: str = Security(api_key_header)):
-    if api_key != EXPECTED_API_KEY:
+    if api_key not in API_KEYS:
         raise HTTPException(status_code=401, detail="Invalid API key")
     return api_key
 
