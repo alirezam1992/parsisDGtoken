@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+tokens.db
+.env
+.env.*
+venv/
+*.sqlite3
